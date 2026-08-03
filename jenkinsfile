@@ -5,30 +5,31 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'main',
+                    url: 'https://github.com/your-username/loan-eligibility.git'
             }
         }
 
-        stage('Test') {
+        stage('Python Version') {
             steps {
-                sh 'python3 app.py'
+                bat 'python --version'
             }
         }
 
-        stage('Build') {
+        stage('Run Tests') {
             steps {
-                echo 'Build Successful'
+                bat 'python loan_eligibility.py --test'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline Status: SUCCESS'
+            echo 'Loan Eligibility Tests Passed!'
         }
 
         failure {
-            echo 'Pipeline Status: FAILURE'
+            echo 'Tests Failed!'
         }
     }
 }
