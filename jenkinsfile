@@ -3,38 +3,32 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                echo 'Repository Checked Out'
-            }
-        }
-
         stage('Python Version') {
             steps {
                 bat 'python --version'
             }
         }
 
-        stage('Run Tests') {
+        stage('Run Application') {
             steps {
-                bat 'python loan_eligibility.py --test'
+                bat 'python app.py --test'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Loan Eligibility System Build Successful'
+                echo 'Build Successful'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline Completed Successfully'
+            echo 'Build Successful'
         }
 
         failure {
-            echo 'Pipeline Failed'
+            echo 'Build Failed'
         }
     }
 }
