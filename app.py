@@ -50,10 +50,10 @@ def main():
         print("\n----------- Loan Result -----------")
 
         if check_loan_eligibility(salary, credit_score):
-            print(f"✅ Congratulations {name}!")
+            print(f" Congratulations {name}!")
             print("You are ELIGIBLE for the loan.")
         else:
-            print(f"❌ Sorry {name}.")
+            print(f" Sorry {name}.")
             print("You are NOT ELIGIBLE for the loan.")
 
             if salary < MIN_SALARY:
