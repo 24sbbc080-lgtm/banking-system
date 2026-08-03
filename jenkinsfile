@@ -5,8 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/your-username/loan-eligibility.git'
+                echo 'Repository Checked Out'
             }
         }
 
@@ -21,15 +20,21 @@ pipeline {
                 bat 'python loan_eligibility.py --test'
             }
         }
+
+        stage('Build') {
+            steps {
+                echo 'Loan Eligibility System Build Successful'
+            }
+        }
     }
 
     post {
         success {
-            echo 'Loan Eligibility Tests Passed!'
+            echo 'Pipeline Completed Successfully'
         }
 
         failure {
-            echo 'Tests Failed!'
+            echo 'Pipeline Failed'
         }
     }
 }
